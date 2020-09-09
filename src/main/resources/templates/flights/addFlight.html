@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          th:href="@{/lib/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="../../static/css/app.css" th:href="@{/css/app.css}"/>
+    <title>Add new flight</title>
+</head>
+<body>
+<div class="container">
+    <div class="form_complete_reserve">
+        <div style="text-align:right;padding:10px">
+            <a th:href="@{/showLogin}" class="btn btn-primary">
+                <span> Logout </span>
+            </a>
+        </div>
+        <div th:if="${msg}" class="alert alert-primary" >
+            <strong th:if="${msg}" th:text="${msg}"></strong>
+        </div>
+        <h3 class ="box-heading">Added Flights</h3><br>
+        <br>
+        <div class="flightTable">
+            <table class="table">
+                <thead>
+                <td>Airlines</td>
+                <td>Departure City</td>
+                <td>Arrival City</td>
+                <td>Departure Date</td>
+                <td>Cost</td>
+                </thead>
+                <tbody >
+                <tr th:each="flightObj : ${flights}">
+                    <td th:text="${flightObj.operatingAirlines}"></td>
+                    <td th:text="${flightObj.departureCity}"></td>
+                    <td th:text="${flightObj.arrivalCity}"></td>
+                    <td th:text="${flightObj.estimatedDepartureTime}"></td>
+                    <td th:text="${flightObj.cost}"></td>
+                    <td><a th:href="@{/deleteFlight?flightId={id}(id=${flightObj.id})}" class="btn btn-success" onclick=" return confirm('Are you sure you want to delete the flight details?');">Delete Flight</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <h2 class="box-heading">Add a new Flight</h2>
+        <br>
+
+        <form method="post" th:action="@{/admin/addFlight}" th:object="${flight}">
+
+            <div class="form-group row">
+                <label for="departureCity" class="col-sm-4 col-form-label">From</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="departureCity" name="departureCity" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="arrivalCity" class="col-sm-4 col-form-label">To</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="arrivalCity" name="arrivalCity" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="operatingAirlines" class="col-sm-4 col-form-label">Flight Number</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="flightNumber" name="flightNumber" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="operatingAirlines" class="col-sm-4 col-form-label">Operating Airlines</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="operatingAirlines" name="operatingAirlines" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="estimatedDepartureTime" class="col-sm-4 col-form-label">Date of Departure (YYYY/MM/DD) </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="dateOfDeparture" name="dateOfDeparture" required>
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="estimatedDepartureTime" class="col-sm-4 col-form-label">Estimated Departure (YYYY-MM-DD HH:MM:SS) </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="estimatedDepartureTime" name="estimatedDepartureTime" required>
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="cost" class="col-sm-4 col-form-label">Cost </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="cost" name="cost" required>
+
+                </div>
+            </div>
+            <button type="submit" class="btn btn-lg btn-success">Add New Flight</button>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>

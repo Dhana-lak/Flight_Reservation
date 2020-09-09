@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          th:href="@{/lib/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> Welcome to FlyHigh Airlines</title>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron jumbo-custom">
+            <h2>Welcome to FlyHigh Airlines</h2>
+        </div>
+        <div class="body-box">
+            <div class="box-heading">
+                <h4>Please Login or Register as a new user to search and book flights</h4>
+            </div>
+            <div class="row index-box">
+                <div class="col-sm-6" align="center">
+                    <a th:href="@{/showLogin}">
+                        <img th:src="@{/images/login.jpg}" width="60" height="60"/>
+                        <p style="color:black">LOGIN</p>
+                    </a>
+                </div>
+                <div class="col-sm-6" align="center">
+                    <a th:href="@{/showReg}">
+                        <img th:src="@{/images/register.jpg}" width="60" height="60"/>
+                        <p style="color:black">REGISTER</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

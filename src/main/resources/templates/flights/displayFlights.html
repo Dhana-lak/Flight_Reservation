@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          th:href="@{/lib/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="../../static/css/app.css" th:href="@{/css/app.css}"/>
+    <title>Displaying flights</title>
+</head>
+<body>
+    <div class="container">
+        <div class="body-box">
+            <h2 class="box-heading">Available Flights</h2>
+            <br>
+            <div class="flightTable">
+                <table class="table">
+                    <thead>
+                        <td>Airlines</td>
+                        <td>Departure City</td>
+                        <td>Arrival City</td>
+                        <td>Departure Date</td>
+                        <td>Cost</td>
+
+                    </thead>
+                    <tbody >
+                        <tr th:each="flight : ${flights}">
+                            <td th:text="${flight.operatingAirlines}"></td>
+                            <td th:text="${flight.departureCity}"></td>
+                            <td th:text="${flight.arrivalCity}"></td>
+                            <td th:text="${flight.estimatedDepartureTime}"></td>
+                            <td th:text="${flight.cost}"></td>
+                            <td><a th:href="@{/showCompleteReservation?flightId={id}(id=${flight.id})}" class="btn btn-success">Select</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a th:href="@{/redirectToLandingPage}" class="btn btn-primary">Back</a>
+        </div>
+    </div>
+
+</body>
+</html>
